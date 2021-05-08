@@ -68,7 +68,7 @@ if __name__ == '__main__':
 
     pre_transform = T.Compose([T.Cartesian(cat=False)])
     # train_data_aug = T.Compose([T.RandomScale([0.95, 1])])
-    train_data_aug = T.Compose([T.RandomScale([0.95, 1]), T.RandomRotate((0 ,10), axis=0)])
+    train_data_aug = T.Compose([T.RandomScale([0.95, 1]), T.RandomRotate((0 ,10), axis=0), T.RandomFlip(axis=0, p=0.5)])
 
     train_dataset = Graph_2D_Memory_Dataset(
         train_dir, transform=train_data_aug, pre_transform = pre_transform
