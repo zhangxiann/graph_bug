@@ -28,7 +28,7 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--cuda", default="0", help="The GPU ID")
-    parser.add_argument("--epoch", default=0, type=int, help="The GPU ID")
+    parser.add_argument("--epoch", default=10, type=int, help="The GPU ID")
     parser.add_argument("--batch_size", default=2, type=int, help="batch size")
     parser.add_argument("--workers", default=0, type=int, help="number of workers")
 
@@ -67,7 +67,7 @@ if __name__ == '__main__':
     optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
 
     pre_transform = T.Compose([T.Cartesian(cat=False)])
-    train_data_aug = T.Compose([T.RandomScale([0.95, 1])])
+    # train_data_aug = T.Compose([T.RandomScale([0.95, 1])])
     train_data_aug = T.Compose([T.RandomScale([0.95, 1]), T.RandomRotate((0 ,10), axis=0)])
 
     train_dataset = Graph_2D_Memory_Dataset(
@@ -76,7 +76,7 @@ if __name__ == '__main__':
     train_loader = DataLoader(train_dataset, batch_size=args.batch_size, shuffle=True, num_workers=args.workers)
 
     # train
-
+    print("train")
     for epoch in range(1, args.epoch):
         model.train()
         correct = 0
